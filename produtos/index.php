@@ -16,12 +16,16 @@
     <div class="content">
         <section class="produtos-container">
             <?php
+            /**
+             * Se existir um usuário na sessão (usuário logado), 
+             * mostra os botões.
+             */
             if (isset($_SESSION["usuarioId"])) {
             ?>
-            <header>
-                <button onclick="javascript:window.location.href ='./novo/'">Novo Produto</button>
-                <button>Adicionar Categoria</button>
-            </header>
+                <header>
+                    <button onclick="javascript:window.location.href ='./novo/'">Novo Produto</button>
+                    <button>Adicionar Categoria</button>
+                </header>
             <?php
             }
             ?>

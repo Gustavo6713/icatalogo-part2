@@ -45,7 +45,7 @@ function validarCampos()
     return $erros;
 }
 
-require("../database/conexao.php");
+require("../../database/conexao.php");
 
 switch ($_POST["acao"]) {
 
@@ -84,7 +84,7 @@ switch ($_POST["acao"]) {
             $mensagem = "Erro ao inserir o produto!";
         }
 
-        header("location: index.php");
+        header("location: http://localhost/Web-backend/icatalogo-part2/produtos/");
 
         break;
 }

@@ -1,11 +1,10 @@
 <?php
 session_start();
 ?>
-
-<link href="/Web-backend/icatalogo-part2/componentes/header/header.css" rel="stylesheet"/>
+<link href="/Web-backend/icatalogo-part2/componentes/header/header.css" rel="stylesheet" />
 <header class="header">
     <figure>
-        <img src="/Web-backend/icatalogo-part2/imgs/logo.png"/>
+        <img src="/Web-backend/icatalogo-part2/imgs/logo.png" />
     </figure>
     <input type="search" placeholder="Pesquisar" />
     <?php
@@ -16,8 +15,8 @@ session_start();
                 <a id="menu-admin">Administrador</a>
             </ul>
         </nav>
-        <div id="container-login" class="container-login">
-            <h1>Fazer Login</h1>
+        <div class="container-login" id="container-login">
+            <h1>Fazer login</h1>
             <form method="POST" action="/Web-backend/icatalogo-part2/componentes/header/acoesLogin.php">
                 <input type="hidden" name="acao" value="login" />
                 <input type="text" name="usuario" placeholder="Usuário" />
@@ -34,7 +33,7 @@ session_start();
             </ul>
         </nav>
         <form id="form-logout" style="display: none" method="POST" action="/Web-backend/icatalogo-part2/componentes/header/acoesLogin.php">
-            <input type="hidden" name="acao" value="logout"/>
+            <input type="hidden" name="acao" value="logout" />
         </form>
     <?php
     }
@@ -45,19 +44,21 @@ session_start();
         document.querySelector("#form-logout").submit();
     }
 
+    //selecionamos o botão administrar e adicionamos o evento de click para ele
     document.querySelector("#menu-admin").addEventListener("click", toggleLogin);
-
+    //função do evento do click
     function toggleLogin() {
         let containerLogin = document.querySelector("#container-login");
         let formContainer = document.querySelector("#container-login > form");
         let h1Container = document.querySelector("#container-login > h1");
-        //quando oculto 
+        //se o container estiver oculto, motramos
         if (containerLogin.style.opacity == 0) {
             formContainer.style.display = "flex";
             h1Container.style.display = "block";
             containerLogin.style.opacity = 1;
             containerLogin.style.height = "200px";
         } else {
+            //se não, ocultamos
             formContainer.style.display = "none";
             h1Container.style.display = "none";
             containerLogin.style.opacity = 0;

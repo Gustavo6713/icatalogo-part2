@@ -1,7 +1,13 @@
 <?php
 session_start();
 
-echo session_save_path();
+//se o usuário não estiver logado
+if (!isset($_SESSION["usuarioId"])) {
+
+  $_SESSION["mensagem"] = "Você precisa fazer login para acessar essa página.";
+
+  header("location: ../index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -21,7 +27,7 @@ echo session_save_path();
   <div class="content">
     <section class="produtos-container">
       <main>
-        <form class="form-produto" method="POST" action="../acoes.php">
+        <form class="form-produto" method="POST" action="acoes.php">
           <input type="hidden" name="acao" value="inserir" />
           <h1>Cadastro de produto</h1>
           <ul>
