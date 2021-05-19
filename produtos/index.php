@@ -11,20 +11,29 @@
 
 <body>
     <?php
-    include("../componentes/header/header.php");
+        include("../componentes/header/header.php");
     ?>
     <div class="content">
+        <div style="position:absolute; top: 0;">
+            <?php
+                if(isset($_SESSION["mensagem"])) {
+                    echo $_SESSION["mensagem"];
+
+                    unset($_SESSION["mensagem"]);
+                }
+            ?>
+        </div>
         <section class="produtos-container">
             <?php
             /**
-             * Se existir um usuário na sessão (usuário logado), 
-             * mostra os botões.
-             */
-            if (isset($_SESSION["usuarioId"])) {
+              * se existir um usuário na sessão (usuário logado),
+              * mostra os botões.
+            */
+            if(isset($_SESSION["usuarioId"])){
             ?>
                 <header>
                     <button onclick="javascript:window.location.href ='./novo/'">Novo Produto</button>
-                    <button>Adicionar Categoria</button>
+                    <button onclick="javascript:window.location.href = '../categoria'">Adicionar Categoria</button>
                 </header>
             <?php
             }
