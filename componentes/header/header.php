@@ -1,12 +1,44 @@
+<link href="/componentes/header/header.css" rel="stylesheet">
 <?php
-session_start();
+// verifica se há mensagem na sessão
+if (isset($_SESSION["mensagem"])) {
+?>        
+    <div class="mensagem">
+        <?= $_SESSION["mensagem"]; ?>
+    </div>
+    <script lang="javascript">
+        setTimeout(() => {
+        document.querySelector(".mensagem").style.display = "none";
+            
+        }, 4000);
+    </script>
+<?php
+    // retira a mensagem da sessão
+    unset($_SESSION["mensagem"]);
+}
 ?>
-<link href="/Web-backend/icatalogo-part2/componentes/header/header.css" rel="stylesheet" />
 <header class="header">
     <figure>
-        <img src="/Web-backend/icatalogo-part2/imgs/logo.png" />
+     <a href="/produtos">
+        <img src="/produtos/imgs/logo.png" />
+    </a>
     </figure>
-    <input type="search" placeholder="Pesquisar" />
+    <form method="GET" action="/produtos/index.php">
+        <input type="text" id="pesquisar" name="pesquisar" value="<?= isset($_GET["pesquisar"]) ? $_GET["pesquisar"] : "" ?>" placeholder="Pesquisar">
+        <button <?= isset($_GET["pesquisar"]) && $_GET["pesquisar"] != "" ? "onClick='limparFiltro()'" : "" ?> >
+        <?php
+        if(isset($_GET["pesquisar"]) && $_GET["pesquisar"] != "") {
+        ?>
+            <img src="/produtos/imgs/limpa.png" />
+        <?php
+        } else {
+        ?>
+            <img src="/produtos/imgs/lupa.svg" />
+        <?php
+        }
+        ?>    
+        </button>
+    </form>
     <?php
     if (!isset($_SESSION["usuarioId"])) {
     ?>
@@ -17,7 +49,7 @@ session_start();
         </nav>
         <div class="container-login" id="container-login">
             <h1>Fazer login</h1>
-            <form method="POST" action="/Web-backend/icatalogo-part2/componentes/header/acoesLogin.php">
+            <form method="POST" action="/componentes/header/acoesLogin.php">
                 <input type="hidden" name="acao" value="login" />
                 <input type="text" name="usuario" placeholder="Usuário" />
                 <input type="password" name="senha" placeholder="Senha" />
@@ -26,13 +58,14 @@ session_start();
         </div>
     <?php
     } else {
+        //pensar em como enviar a ação de logout para o arquivo acoesLogin.php
     ?>
         <nav>
             <ul>
                 <a id="menu-admin" onclick="logout()">Sair</a>
             </ul>
         </nav>
-        <form id="form-logout" style="display: none" method="POST" action="/Web-backend/icatalogo-part2/componentes/header/acoesLogin.php">
+        <form id="form-logout" style="display: none" method="POST" action="/componentes/header/acoesLogin.php">
             <input type="hidden" name="acao" value="logout" />
         </form>
     <?php
@@ -43,7 +76,6 @@ session_start();
     function logout(){
         document.querySelector("#form-logout").submit();
     }
-
     //selecionamos o botão administrar e adicionamos o evento de click para ele
     document.querySelector("#menu-admin").addEventListener("click", toggleLogin);
     //função do evento do click
@@ -64,5 +96,9 @@ session_start();
             containerLogin.style.opacity = 0;
             containerLogin.style.height = "0px";
         }
+    }
+
+    function limparFiltro() {
+        document.querySelector("#pesquisar").value = "";
     }
 </script>

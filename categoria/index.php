@@ -25,7 +25,7 @@ $resultado = mysqli_query($conexao, $sql);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles-global.css" />
-    <link rel="stylesheet" href="./categorias.css" />
+    <link rel="stylesheet" href="./categoria.css" />
     <title>Administrar Categorias</title>
 </head>
 
@@ -36,7 +36,7 @@ $resultado = mysqli_query($conexao, $sql);
     <div class="content">
         <section class="categorias-container">
             <main>
-                <form class="form-categorias" method="POST" action="./acoesCategoria.php">
+                <form class="form-categorias" method="POST" action="./acoesCategorias.php">
                     <input type="hidden" name="acao" value="inserir" />
                     <h1 class="span2">Adicionar Categorias</h1>
                     <div class="input-group span2">
@@ -60,7 +60,7 @@ $resultado = mysqli_query($conexao, $sql);
                 <?php
                 }
                 ?>
-                <form id="form-deletar" method="POST" action="./acoesCategoria.php">
+                <form id="form-deletar" method="POST" action="./acoesCategorias.php">
                     <input type="hidden" name="acao" value="deletar" />
                     <input id="categoria-id" type="hidden" name="categoriaId" value=""/>
                 </form>

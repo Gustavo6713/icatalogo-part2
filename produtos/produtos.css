@@ -10,8 +10,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 10px;
+  place-items: center;
 
   padding-bottom: 40px;
+  margin-top: 20px;
 }
 
 .card-produto {
@@ -19,6 +21,7 @@
   width: 100%;
   min-width: 300px;
   max-width: 350px;
+  position: relative;
 
   border-radius: 6px;
   box-shadow: 0px 0px 2px 2px var(--boxShadow);
@@ -44,6 +47,7 @@
 .card-produto figure img {
   width: 100%;
   max-height: 100%;
+  border-radius: 6px 6px 0px 0px;
 }
 
 .card-produto section {
@@ -56,6 +60,13 @@
 
 .card-produto section .preco {
   font-size: 26px;
+}
+
+.card-produto section .preco > em {
+  margin-left: 5px;
+  font-size: 14px;
+  color: green;
+  text-decoration: line-through;
 }
 
 .card-produto section .parcelamento {
@@ -83,4 +94,23 @@
   margin-top: 16px;
   font-size: 16px;
   color: var(--textSecundary);
+}
+
+.acoes {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding: 5px 10px;
+
+  background-color: var(--overlay);
+  border-radius: 6px;
+}
+
+.acoes img {
+  width: 20px;
+}
+
+.acoes img:hover {
+  transition: 0.2s;
+  transform: rotate(360deg) scale(1.1);
 }

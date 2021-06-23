@@ -9,3 +9,7 @@ echo sha1("123456");
 echo "<br /><br />";
 
 echo password_hash("123456", PASSWORD_DEFAULT);
+
+echo "<br /><br />";
+
+echo password_hash("654321", PASSWORD_DEFAULT);
